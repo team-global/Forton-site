@@ -13,13 +13,14 @@
       text-align: center;
     }
     header img {
-      width: 120px;
+      width: 160px;
       margin-top: 30px;
     }
     h1 {
       font-size: 2.2rem;
       margin-top: 20px;
       color: #1E90FF;
+      text-shadow: 0 0 15px rgba(30,144,255,0.8);
     }
     h2 {
       font-size: 1.2rem;
@@ -39,6 +40,8 @@
       text-decoration: none;
       color: white;
       transition: 0.3s;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
     .btn img {
       width: 22px;
@@ -50,19 +53,40 @@
     .btn-green { background-color: #25D366; }
     .btn-green:hover { background-color: #1DA851; }
 
-    .btn-red { background-color: #FF0000; }
-    .btn-red:hover { background-color: #CC0000; }
-
+    /* Videos */
     .video-section {
-      margin: 30px auto;
-      max-width: 500px;
+      margin: 25px auto;
+      max-width: 350px;
     }
-    iframe {
-      width: 100%;
-      height: 280px;
+    .video-box {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      overflow: hidden;
       border-radius: 12px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+    }
+    .video-box iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       border: none;
     }
+    .video-title {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      font-weight: bold;
+      text-shadow: 0px 0px 8px rgba(0,0,0,0.6);
+    }
+    .join-title {
+      color: #00FFCC; /* neon green-blue */
+    }
+    .id-title {
+      color: #FF69B4; /* pink */
+    }
+
     footer {
       margin-top: 40px;
       padding: 20px;
@@ -75,7 +99,7 @@
 
   <!-- ForTon Logo -->
   <header>
-    <img src="your-forton-logo.png" alt="ForTon Logo">
+    <img src="forton-logo.jpeg" alt="ForTon Logo">
   </header>
 
   <!-- Heading -->
@@ -93,13 +117,17 @@
 
   <!-- Videos -->
   <div class="video-section">
-    <h2>▶️ Join Kaise Karen</h2>
-    <iframe src="https://www.youtube.com/embed/9qS03FVW7pY" allowfullscreen></iframe>
+    <h2 class="video-title join-title">🚀 ForTon Join Karne Ka Asli Tareeka</h2>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/9qS03FVW7pY" allowfullscreen></iframe>
+    </div>
   </div>
 
   <div class="video-section">
-    <h2>🆔 ID Kaise Banaye</h2>
-    <iframe src="https://www.youtube.com/embed/gViaHAykzKk" allowfullscreen></iframe>
+    <h2 class="video-title id-title">🆔 ForTon ID Banane Ki Step-by-Step Guide</h2>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/gViaHAykzKk" allowfullscreen></iframe>
+    </div>
   </div>
 
   <footer>
