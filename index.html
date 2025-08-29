@@ -52,6 +52,44 @@
     .btn-red { background-color: #FF0000; }
     .btn-red:hover { background-color: #CC0000; }
 
+    /* Dashboard Section */
+    .dashboard {
+      margin: 40px auto;
+      max-width: 1100px;
+      padding: 0 20px;
+    }
+    .dashboard h2 {
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      color: #FFD700;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.6);
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 18px rgba(0,0,0,0.8);
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      color: #FFD700;
+    }
+    .card p {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #FFFFFF;
+    }
+
     /* Video Grid */
     .video-grid {
       display: grid;
@@ -73,13 +111,6 @@
       border-radius: 12px;
       border: none;
     }
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #ddd;
-      text-shadow: 0 1px 5px rgba(0,0,0,0.6);
-    }
 
     /* Photo Section */
     .photo-section {
@@ -94,6 +125,14 @@
     }
     .main-photo:hover {
       transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #ddd;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.6);
     }
   </style>
 </head>
@@ -118,6 +157,29 @@
   <a href="https://t.me/fortonbigupdate" target="_blank" class="btn btn-blue">
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt=""> Join Telegram
   </a>
+
+  <!-- Dashboard Section -->
+  <div class="dashboard">
+    <h2>📊 Your ForTon Dashboard</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>💰 Earnings</h3>
+        <p>₹15,960</p>
+      </div>
+      <div class="card">
+        <h3>👥 Team Members</h3>
+        <p>124 Active</p>
+      </div>
+      <div class="card">
+        <h3>🏦 Wallet Balance</h3>
+        <p>+48 TON</p>
+      </div>
+      <div class="card">
+        <h3>📈 Rank</h3>
+        <p>Global Leader</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Videos Grid -->
   <div class="video-grid">
