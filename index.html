@@ -9,8 +9,8 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: url("Untitled design.png") no-repeat center center fixed;
-      background-size: cover;
+      /* Gradient Background */
+      background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCB77);
       color: #FFFFFF;
       text-align: center;
     }
@@ -18,7 +18,7 @@
     h1 {
       font-size: 2.3rem;
       margin-top: 40px;
-      color: #FFD700;
+      color: #FFFFFF;
       text-shadow: 0 2px 8px rgba(0,0,0,0.7);
       transition: 0.3s;
     }
@@ -29,7 +29,7 @@
     h2 {
       font-size: 1.2rem;
       margin: 20px 0;
-      color: #E0E0E0;
+      color: #FFFFFF;
       text-shadow: 0 1px 6px rgba(0,0,0,0.6);
     }
 
@@ -64,44 +64,6 @@
 
     .btn-red { background-color: #FF0000; }
     .btn-red:hover { background-color: #CC0000; }
-
-    /* ===== Dashboard Section ===== */
-    .dashboard {
-      margin: 40px auto;
-      max-width: 1100px;
-      padding: 0 20px;
-    }
-    .dashboard h2 {
-      font-size: 1.5rem;
-      margin-bottom: 25px;
-      color: #FFD700;
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.6);
-      transition: 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 0 18px rgba(0,0,0,0.8);
-    }
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-      color: #FFD700;
-    }
-    .card p {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #FFFFFF;
-    }
 
     /* ===== Video Grid ===== */
     .video-grid {
@@ -155,7 +117,7 @@
       margin-top: 60px;
       padding: 25px;
       font-size: 0.9rem;
-      color: #ddd;
+      color: #fff;
       text-shadow: 0 1px 5px rgba(0,0,0,0.6);
     }
 
@@ -163,7 +125,7 @@
     @media (max-width: 600px) {
       h1 { font-size: 1.6rem; }
       h2 { font-size: 1rem; }
-      .card-grid, .video-grid { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
       .main-photo { width: 80%; }
     }
   </style>
@@ -189,27 +151,6 @@
   <a href="https://t.me/fortonbigupdate" target="_blank" class="btn btn-blue">
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt=""> Join Telegram
   </a>
-
-  <!-- Dashboard Section -->
-  <div class="dashboard">
-    <h2>📊 Your ForTon Dashboard</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>💰 Earnings</h3>
-        <p>₹300000</p>
-      </div>
-      <div class="card">
-        <h3>👥 Team Members</h3>
-        <p>12000Active</p>
-      </div>
-      <div class="card">
-      </div>
-      <div class="card">
-        <h3>📈 Rank</h3>
-        <p>Global Leader</p>
-      </div>
-    </div>
-  </div>
 
   <!-- Videos Grid -->
   <div class="video-grid">
