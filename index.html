@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Team Global - ForTon Family</title>
   <style>
+    /* ===== Base Styles ===== */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -13,18 +14,26 @@
       color: #FFFFFF;
       text-align: center;
     }
+
     h1 {
       font-size: 2.3rem;
       margin-top: 40px;
       color: #FFD700;
       text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      transition: 0.3s;
     }
+    h1:hover {
+      transform: scale(1.05);
+    }
+
     h2 {
       font-size: 1.2rem;
       margin: 20px 0;
       color: #E0E0E0;
       text-shadow: 0 1px 6px rgba(0,0,0,0.6);
     }
+
+    /* ===== Buttons ===== */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -43,6 +52,10 @@
       width: 22px;
       height: 22px;
     }
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
     .btn-blue { background-color: #1E90FF; }
     .btn-blue:hover { background-color: #0066FF; }
 
@@ -52,7 +65,7 @@
     .btn-red { background-color: #FF0000; }
     .btn-red:hover { background-color: #CC0000; }
 
-    /* Dashboard Section */
+    /* ===== Dashboard Section ===== */
     .dashboard {
       margin: 40px auto;
       max-width: 1100px;
@@ -76,7 +89,7 @@
       transition: 0.3s;
     }
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.03);
       box-shadow: 0 0 18px rgba(0,0,0,0.8);
     }
     .card h3 {
@@ -90,7 +103,7 @@
       color: #FFFFFF;
     }
 
-    /* Video Grid */
+    /* ===== Video Grid ===== */
     .video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -104,6 +117,16 @@
       border-radius: 12px;
       padding: 15px;
       box-shadow: 0 0 12px rgba(0,0,0,0.6);
+      transition: 0.3s;
+    }
+    .video-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 18px rgba(0,0,0,0.7);
+    }
+    .video-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: #FFD700;
     }
     iframe {
       width: 100%;
@@ -112,7 +135,7 @@
       border: none;
     }
 
-    /* Photo Section */
+    /* ===== Photo Section ===== */
     .photo-section {
       margin: 25px auto;
       text-align: center;
@@ -127,12 +150,21 @@
       transform: scale(1.05);
     }
 
+    /* ===== Footer ===== */
     footer {
-      margin-top: 40px;
-      padding: 20px;
+      margin-top: 60px;
+      padding: 25px;
       font-size: 0.9rem;
       color: #ddd;
       text-shadow: 0 1px 5px rgba(0,0,0,0.6);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1rem; }
+      .card-grid, .video-grid { grid-template-columns: 1fr; }
+      .main-photo { width: 80%; }
     }
   </style>
 </head>
@@ -184,19 +216,20 @@
   <!-- Videos Grid -->
   <div class="video-grid">
     <div class="video-card">
-      <h2>🎬 How to Join ForTon? (Step by Step Guide)</h2>
+      <h3>🎬 How to Join ForTon? (Step by Step Guide)</h3>
       <iframe src="https://www.youtube.com/embed/9qS03FVW7pY" allowfullscreen></iframe>
     </div>
     <div class="video-card">
-      <h2>🆔 Create Your ID in ForTon (Full Tutorial)</h2>
+      <h3>🆔 Create Your ID in ForTon (Full Tutorial)</h3>
       <iframe src="https://www.youtube.com/embed/gViaHAykzKk" allowfullscreen></iframe>
     </div>
     <div class="video-card">
-      <h2>🔥 Special Forton Update Video</h2>
+      <h3>🔥 Special Forton Update Video</h3>
       <iframe src="https://www.youtube.com/embed/toVP30d8T4Y" allowfullscreen></iframe>
     </div>
   </div>
 
+  <!-- Footer -->
   <footer>
     © 2025 Team Global ForTon Family | All Rights Reserved
   </footer>
