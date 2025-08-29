@@ -8,19 +8,22 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0A0A0A, #1a1f3d);
+      background: url("Untitled design.png") no-repeat center center fixed;
+      background-size: cover;
       color: #FFFFFF;
       text-align: center;
     }
     h1 {
       font-size: 2.3rem;
       margin-top: 40px;
-      color: #1E90FF;
+      color: #FFD700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
     }
     h2 {
       font-size: 1.2rem;
       margin: 20px 0;
-      color: #B0B0B0;
+      color: #E0E0E0;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
     }
     .btn {
       display: inline-flex;
@@ -49,9 +52,20 @@
     .btn-red { background-color: #FF0000; }
     .btn-red:hover { background-color: #CC0000; }
 
-    .video-section {
-      margin: 25px auto;
-      max-width: 400px;
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin: 30px auto;
+      max-width: 1000px;
+      padding: 0 20px;
+    }
+    .video-card {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.6);
     }
     iframe {
       width: 100%;
@@ -63,7 +77,8 @@
       margin-top: 40px;
       padding: 20px;
       font-size: 0.9rem;
-      color: #888;
+      color: #ddd;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.6);
     }
 
     /* Photo Section */
@@ -104,15 +119,20 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt=""> Join Telegram
   </a>
 
-  <!-- Videos -->
-  <div class="video-section">
-    <h2>🎬 How to Join ForTon? (Step by Step Guide)</h2>
-    <iframe src="https://www.youtube.com/embed/9qS03FVW7pY" allowfullscreen></iframe>
-  </div>
-
-  <div class="video-section">
-    <h2>🆔 Create Your ID in ForTon (Full Tutorial)</h2>
-    <iframe src="https://www.youtube.com/embed/gViaHAykzKk" allowfullscreen></iframe>
+  <!-- Videos Grid -->
+  <div class="video-grid">
+    <div class="video-card">
+      <h2>🎬 How to Join ForTon? (Step by Step Guide)</h2>
+      <iframe src="https://www.youtube.com/embed/9qS03FVW7pY" allowfullscreen></iframe>
+    </div>
+    <div class="video-card">
+      <h2>🆔 Create Your ID in ForTon (Full Tutorial)</h2>
+      <iframe src="https://www.youtube.com/embed/gViaHAykzKk" allowfullscreen></iframe>
+    </div>
+    <div class="video-card">
+      <h2>🔥 Special Forton Update Video</h2>
+      <iframe src="https://www.youtube.com/embed/toVP30d8T4Y" allowfullscreen></iframe>
+    </div>
   </div>
 
   <footer>
