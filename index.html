@@ -49,8 +49,47 @@
     .btn-blue:hover { background-color: #0066FF; }
     .btn-green { background-color: #25D366; }
     .btn-green:hover { background-color: #1DA851; }
-    .btn-red { background-color: #FF0000; }
-    .btn-red:hover { background-color: #CC0000; }
+
+    /* Video Button */
+    .video-button {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      border-radius: 8px;
+      width: 220px;
+      height: 60px;
+      margin: 12px;
+    }
+    .video-button video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .video-button a {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      background-color: rgba(255, 0, 0, 0.6); /* red transparent overlay */
+      border-radius: 8px;
+    }
+    .video-button a img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
     .video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -126,10 +165,15 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt=""> Join Telegram
   </a>
 
-  <!-- NEW Join Now Button -->
-  <a href="https://forton.app/?ref=46" target="_blank" class="btn btn-red">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Red_dot_icon.svg" alt=""> Join Now
-  </a>
+  <!-- NEW Video Join Now Button -->
+  <div class="video-button">
+    <video autoplay loop muted playsinline>
+      <source src="https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4" type="video/mp4">
+    </video>
+    <a href="https://forton.app/?ref=46" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Red_dot_icon.svg" alt=""> Join Now
+    </a>
+  </div>
 
   <!-- Videos Grid -->
   <div class="video-grid">
