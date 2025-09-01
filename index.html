@@ -1,199 +1,159 @@
-import "@stdlib/ownable";
-import "@stdlib/deploy";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Global - ForTon Family</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCB77);
+      color: #FFFFFF;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.3rem;
+      margin-top: 40px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      transition: 0.3s;
+    }
+    h1:hover { transform: scale(1.05); }
+    h2 {
+      font-size: 1.2rem;
+      margin: 20px 0;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 12px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+    .btn img { width: 22px; height: 22px; }
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .btn-blue { background-color: #1E90FF; }
+    .btn-blue:hover { background-color: #0066FF; }
+    .btn-green { background-color: #25D366; }
+    .btn-green:hover { background-color: #1DA851; }
 
-import "./ft_base_program_user.tact";
-import "./ft_user_storage.tact";
-import "./ft_user_main.tact";
-
-contract FtBaseProgramMain with Deployable, Ownable {
-    const programName: String = "Base";
-    const minTonsForStorage: Int = ton("0.04");
-    
-    gasMultiplier: Int as coins = ton("1.0");
-    isSetup: Bool = false;
-
-    owner: Address;
-    master: Address;
-    recipient: Address;
-    levelPrices: map<Int as uint8, Int>;
-    levelFees: map<Int as uint8, Int>;
-    totalProfit: Int as coins = ton("0.0");
-
-    init(master: Address){
-        nativeThrowUnless(132, sender() == master);
-
-        self.master = master;
-        self.owner = sender();
-        self.recipient = sender();
-
-        self.setupLevelPrice();
-        self.setupLevelFee();
+    /* Video Background Button Style */
+    .video-button {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      border-radius: 8px;
+      width: 220px;
+      height: 60px;
+      margin: 12px;
+    }
+    .video-button video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .video-button a {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      background-color: rgba(255, 0, 0, 0.6);
+      border-radius: 8px;
+    }
+    .video-button a img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
     }
 
-    receive(){}
-
-    receive("PaymentForSquadCreation"){}
-
-    receive("withdraw"){
-        self.requireOwner();
-        nativeReserve(self.minTonsForStorage, 0);
-
-        send(SendParameters{
-            to: self.recipient,
-            value: 0,
-            mode: SendRemainingBalance,
-            body: "Your withdraw".asComment(),
-        });
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin: 30px auto;
+      max-width: 1000px;
+      padding: 0 20px;
     }
-
-    receive(msg: SetupBaseProgramMain){
-        nativeThrowUnless(132, sender() == self.master);
-        nativeThrowUnless(131, !self.isSetup);
-
-        self.owner = msg.owner;
-        self.recipient = msg.owner;
-        self.isSetup = true;
-        self.reply(SetupMaster{}.toCell());
+    .video-card {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.6);
+      transition: 0.3s;
     }
-
-    receive(msg: BuyLevel){
-        self.requireUserMain(msg.userId);
-        let msgValue: Int = context().value;
-        let balance: Int = myBalance() - msgValue;
-
-        nativeThrowUnless(131,  msg.levelNumber > 0 &&  msg.levelNumber <= 12);
-
-        let increment: Int = msg.levelNumber * self.gasMultiplier;
-        let levelFee: Int = self.levelFees.get(msg.levelNumber)!!;
-        let levelPrice: Int = self.levelPrices.get(msg.levelNumber)!!;
-
-        let requireMinValue: Int = levelPrice + increment + levelFee;
-        nativeThrowUnless(131, (requireMinValue <= msgValue || msg.userId == 1));
-        
-        nativeReserve(balance + levelFee, 0);
-        self.totalProfit += levelPrice;
-        let init: StateInit = initOf FtBaseProgramUser(msg.userId, myAddress());
-
-        send(SendParameters{
-            to: contractAddress(init),
-            value: 0,
-            mode: SendRemainingBalance,
-            body: ActivateLevel{
-                owner: msg.owner,
-                invitedId: msg.invitedId,
-                levelNumber: msg.levelNumber,
-                levelPrice: levelPrice,
-                recipientExcesses: msg.recipientExcesses
-            }.toCell(),
-            code: msg.levelNumber == 1 ? init.code : null,
-            data: msg.levelNumber == 1 ? init.data : null
-        });
+    .video-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 18px rgba(0,0,0,0.7);
     }
-
-    receive(msg: UpdateLevelPrice){
-        self.requireOwner();
-        nativeThrowUnless(5, (msg.levelNumber > 0 && msg.levelNumber <= 12));
-        self.levelPrices.set(msg.levelNumber, msg.levelPrice);
-        self.reply("Level price successfully changed".asComment());
+    .video-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: #FFD700;
     }
-
-    receive(msg: UpdateLevelFee){
-        self.requireOwner();
-        nativeThrowUnless(5, (msg.levelNumber > 0 && msg.levelNumber <= 12));
-        self.levelFees.set(msg.levelNumber, msg.levelFee);
-        self.reply("Level fee successfully changed".asComment());
+    iframe {
+      width: 100%;
+      height: 220px;
+      border-radius: 12px;
+      border: none;
     }
-
-    receive(msg: UpdateGasMultiplier){
-        self.requireOwner();
-        nativeThrowUnless(5, msg.newValue > ton("0.5"));
-        self.gasMultiplier = msg.newValue;
-        self.reply("Gas multiplier successfully changed".asComment());
+    .photo-section { margin: 25px auto; text-align: center; }
+    .main-photo {
+      width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      transition: 0.3s;
     }
-
-    receive(msg: UpdateRecipientAddress){
-        self.requireOwner();
-        self.recipient = msg.newAddress;
-        self.reply("Recipient address successfully changed".asComment());
+    .main-photo:hover { transform: scale(1.05); }
+    footer {
+      margin-top: 60px;
+      padding: 25px;
+      font-size: 0.9rem;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.6);
     }
-
-    // ------------------ Private Function  ------------------ //
-
-    fun requireUserMain(id: Int){
-        nativeThrowUnless(132, sender() == self.userMainAddress(id));
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1rem; }
+      .video-grid { grid-template-columns: 1fr; }
+      .main-photo { width: 80%; }
     }
+  </style>
+</head>
+<body>
 
-    fun setupLevelPrice(){
-        self.levelPrices.set(1, ton("1.0"));
-        self.levelPrices.set(2, ton("2.0"));
-        self.levelPrices.set(3, ton("4.0"));
-        self.levelPrices.set(4, ton("7.0"));
-        self.levelPrices.set(5, ton("12.0"));
-        self.levelPrices.set(6, ton("22.0"));
-        self.levelPrices.set(7, ton("40.0"));
-        self.levelPrices.set(8, ton("70.0"));
-        self.levelPrices.set(9, ton("120.0"));
-        self.levelPrices.set(10, ton("220.0"));
-        self.levelPrices.set(11, ton("400.0"));
-        self.levelPrices.set(12, ton("790.0"));
-    }
+  <h1>🌍 Welcome to Team Global ForTon Family</h1>
+  <h2>🚀 Join ForTon & Begin Your Active + Passive Income Journey</h2>
 
-    fun setupLevelFee(){
-        self.levelFees.set(1, ton("0.25"));
-        self.levelFees.set(2, ton("0.5"));
-        self.levelFees.set(3, ton("1.0"));
-        self.levelFees.set(4, ton("1.75"));
-        self.levelFees.set(5, ton("3.0"));
-        self.levelFees.set(6, ton("5.5"));
-        self.levelFees.set(7, ton("10.0"));
-        self.levelFees.set(8, ton("17.5"));
-        self.levelFees.set(9, ton("30.0"));
-        self.levelFees.set(10, ton("55.0"));
-        self.levelFees.set(11, ton("100.0"));
-        self.levelFees.set(12, ton("197.5"));
-    }
+  <div class="photo-section">
+    <a href="https://ibb.co/pBTtcwY3" target="_blank">
+      <img src="https://i.ibb.co/Ndq85CcL/IMG-5666.jpg" alt="Forton Family" class="main-photo">
+    </a>
+  </div>
 
-    // ------------------ Get Functions ------------------ //
+  <a href="https://wa.me/917470642653" target="_blank" class="btn btn-green">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt=""> Join WhatsApp
+  </a>
 
-    get fun programName(): String {
-        return self.programName;
-    }
-
-    get fun gasMultiplier(): Int {
-        return self.gasMultiplier;
-    }
-
-    get fun levelPrices(): map<Int as uint8, Int> {
-        return self.levelPrices;
-    }
-
-    get fun levelFees(): map<Int as uint8, Int> {
-        return self.levelFees;
-    }
-
-    get fun totalProfit(): Int {
-        return self.totalProfit;
-    }
-
-    get fun masterAddress(): Address {
-        return self.master;
-    }
-
-    get fun recipientAddress(): Address {
-        return self.recipient;
-    }
-
-    get fun balance(): Int {
-        return myBalance();
-    }
-
-    get fun userMainAddress(id: Int): Address{
-        let init: StateInit = initOf FtUserMain(id, self.master);
-        return contractAddress(init);
-    }
-
-    get fun programUserAddress(id: Int): Address{
-        let init: StateInit = initOf FtBaseProgramUser(id, myAddress());
-        return contractAddress(init);
-    }
-}
+  <a href="https://t.me/fortonbigupdate" target="_blank" class="btn btn-blue">
+    <img src="https://upload.wikimedia.
